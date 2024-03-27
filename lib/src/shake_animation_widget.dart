@@ -30,7 +30,7 @@ class ShakeAnimationWidget extends StatefulWidget {
   final double randomValue;
 
   ///抖动动画控制器
-  final ShakeAnimationController ?shakeAnimationController;
+  final ShakeAnimationController? shakeAnimationController;
 
   ///是否自动执行抖动
   final bool isForward;
@@ -39,7 +39,7 @@ class ShakeAnimationWidget extends StatefulWidget {
       {required this.child,
       this.shakeRange = 0.1,
       this.shakeCount = 0,
-      this.shakeAnimationType = ShakeAnimationType.RoateShake,
+      this.shakeAnimationType = ShakeAnimationType.LeftRightShake,
       this.shakeAnimationController,
       this.isForward = true,
       this.randomValue = 4});
@@ -53,10 +53,10 @@ class ShakeAnimationWidget extends StatefulWidget {
 class _ShakeAnimationState extends State<ShakeAnimationWidget>
     with SingleTickerProviderStateMixin {
   ///动画控制器
- late AnimationController _animationController;
+  late AnimationController _animationController;
 
   ///旋转弧度动画
- late Animation<double> _angleAnimation;
+  late Animation<double> _angleAnimation;
 
   ///抖动执行次数
   int _shakeTotalCount = 0;
@@ -65,7 +65,7 @@ class _ShakeAnimationState extends State<ShakeAnimationWidget>
   int _shakeCurrentCount = 0;
 
   ///抖动的范围配置
- late double _shakeRange;
+  late double _shakeRange;
 
   /// lib/demo/shake/shake_animation_widget.dart
   @override
@@ -123,7 +123,6 @@ class _ShakeAnimationState extends State<ShakeAnimationWidget>
   /// lib/demo/shake/shake_animation_widget.dart
   ///抖动动画控制器监听
   void shakeListener(isOpen, shakeCount) {
-
     _shakeCurrentCount = 0;
 
     if (isOpen) {
@@ -173,7 +172,7 @@ class _ShakeAnimationState extends State<ShakeAnimationWidget>
   void dispose() {
     ///销毁
     _animationController.dispose();
-    if(widget.shakeAnimationController!=null){
+    if (widget.shakeAnimationController != null) {
       ///移动监听
       widget.shakeAnimationController!.removeListener();
     }
